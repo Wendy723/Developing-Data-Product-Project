@@ -50,7 +50,7 @@ DES <- function(T, A, THETA) {
 <right><img src=./assets/img/100mgBID.png height='48%' width='48%' style='margin:0px; border: 2px solid #FF0000'/></center>
 Bacterial count profiles without treatment (Left plot) and with 100 mg antibiotics twice a day for 10 days (Right plot)
 
-<center>https://hechuan.shinyapps.io/PK-PD-Modeling-of-Antibiotics//</center>
+<center>https://hechuan.shinyapps.io/PK-PD-Modeling-of-Antibiotics/</center>
 
 
 --- .class #id 
@@ -60,7 +60,7 @@ Bacterial count profiles without treatment (Left plot) and with 100 mg antibioti
 <left><img src=./assets/img/100mgBID.png height='48%' width='48%' style='margin:0px; border: 2px solid #FF0000'/></center>
 <right><img src=./assets/img/100mgBID_1.png height='48%' width='48%' style='margin:0px; border: 2px solid #FF0000'/></center>
 Both bacterial count profiles were under the treatment of 100mg twice a day, but drug related parameters (Emax and EC50) were different in the two plots, compared to the left plot, the drug in the right plot have poorer efficacy and potency (lower Emax, and higher EC50).  
-<center>https://hechuan.shinyapps.io/PK-PD-Modeling-of-Antibiotics//</center>
+<center>https://hechuan.shinyapps.io/PK-PD-Modeling-of-Antibiotics/</center>
 
 
 
