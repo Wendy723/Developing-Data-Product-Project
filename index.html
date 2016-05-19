@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>How Antibacterial Dose, Dosing Frequency and Drug Parameters affect treatment efficacy?</title>
+  <meta charset="utf-8">
+  <meta name="description" content="How Antibacterial Dose, Dosing Frequency and Drug Parameters affect treatment efficacy?">
+  <meta name="author" content="Hechuan">
+  <meta name="generator" content="slidify" />
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta http-equiv="X-UA-Compatible" content="chrome=1">
+  <link rel="stylesheet" href="libraries/frameworks/io2012/css/default.css" media="all" >
+  <link rel="stylesheet" href="libraries/frameworks/io2012/css/phone.css" 
+    media="only screen and (max-device-width: 480px)" >
+  <link rel="stylesheet" href="libraries/frameworks/io2012/css/slidify.css" >
+  <link rel="stylesheet" href="libraries/highlighters/highlight.js/css/tomorrow.css" />
+  <base target="_blank"> <!-- This amazingness opens all links in a new tab. -->  <link rel=stylesheet href="./assets/css/ribbons.css"></link>
+
+  
+  <!-- Grab CDN jQuery, fall back to local if offline -->
+  <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.7.min.js"></script>
+  <script>window.jQuery || document.write('<script src="libraries/widgets/quiz/js/jquery.js"><\/script>')</script> 
+  <script data-main="libraries/frameworks/io2012/js/slides" 
+    src="libraries/frameworks/io2012/js/require-1.0.8.min.js">
+  </script>
+  
+  
+
+</head>
+<body style="opacity: 0">
+  <slides class="layout-widescreen">
+    
+    <!-- LOGO SLIDE -->
+        <slide class="title-slide segue nobackground">
+  <hgroup class="auto-fadein">
+    <h1>How Antibacterial Dose, Dosing Frequency and Drug Parameters affect treatment efficacy?</h1>
+    <h2></h2>
+    <p>Hechuan<br/></p>
+  </hgroup>
+  <article></article>  
+</slide>
+    
+
+    <!-- SLIDES -->
+    <slide class="" id="slide-1" style="background:;">
+  <hgroup>
+    <h2>Why you should know Pharmacokinetic-Pharmacodynamic Modeling and Simulation?</h2>
+  </hgroup>
+  <article data-timings="">
+    <ol>
+<li>An important tool for rational drug development and drug use</li>
+<li>Characterizing the relationships between dose, concentration, and desired effects and side effects </li>
+<li>Help clinical dose selection and new antibiotics regimen development</li>
+</ol>
+
+<ul>
+<li>Next slide will describe how PK-PD model differential equations can be produced in R through <code>deSolve</code> package</li>
+</ul>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>How the PK-PD model was created in R?</h2>
+  </hgroup>
+  <article data-timings="">
+    <pre><code class="r">library(deSolve)
+DES &lt;- function(T, A, THETA) {
+        KA  &lt;- THETA[1]
+        K10 &lt;- THETA[2]
+        Kgrowth_base &lt;- THETA[3]
+        Kdeath &lt;- THETA[4]
+        Emax &lt;- THETA[5]
+        EC50 &lt;- THETA[6]
+        gamma &lt;- THETA[7]
+        dA &lt;- vector(length = 3)
+        dA[1] = -KA*A[1]        #Absorption compartment
+        dA[2] =  KA*A[1] -K10*A[2]  #Central compartment  
+        dA[3] =  A[3]*Kgrowth_base*(1-A[3]/500000000)-
+                (Kdeath+Emax*A[2]**gamma/(A[2]**gamma+EC50**gamma))*A[3] # Bacteria Comapartment
+        list(dA)
+}
+</code></pre>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>How Does The App Help Understand How Dose and Dosing Frequncy affect treatment efficacy of Antibiotics:</h2>
+  </hgroup>
+  <article data-timings="">
+    <p><left><img src=./assets/img/0mg.png height='48%' width='48%' style='margin:0px; border: 2px solid #FF0000'/></center>
+<right><img src=./assets/img/100mgBID.png height='48%' width='48%' style='margin:0px; border: 2px solid #FF0000'/></center>
+Bacterial count profiles without treatment (Left plot) and with 100 mg antibiotics twice a day for 10 days (Right plot)</p>
+
+<p><center><a href="https://hechuan.shinyapps.io/PK-PD-Modeling-of-Antibiotics//">https://hechuan.shinyapps.io/PK-PD-Modeling-of-Antibiotics//</a></center></p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+<slide class="class" id="id" style="background:;">
+  <hgroup>
+    <h2>How Does The App Help Understand How Drug parameters Affect treatment efficacy:</h2>
+  </hgroup>
+  <article data-timings="">
+    <p><left><img src=./assets/img/100mgBID.png height='48%' width='48%' style='margin:0px; border: 2px solid #FF0000'/></center>
+<right><img src=./assets/img/100mgBID_1.png height='48%' width='48%' style='margin:0px; border: 2px solid #FF0000'/></center>
+Both bacterial count profiles were under the treatment of 100mg twice a day, but drug related parameters (Emax and EC50) were different in the two plots, compared to the left plot, the drug in the right plot have poorer efficacy and potency (lower Emax, and higher EC50).<br>
+<center><a href="https://hechuan.shinyapps.io/PK-PD-Modeling-of-Antibiotics//">https://hechuan.shinyapps.io/PK-PD-Modeling-of-Antibiotics//</a></center></p>
+
+  </article>
+  <!-- Presenter Notes -->
+</slide>
+
+    <slide class="backdrop"></slide>
+  </slides>
+  <div class="pagination pagination-small" id='io2012-ptoc' style="display:none;">
+    <ul>
+      <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=1 title='Why you should know Pharmacokinetic-Pharmacodynamic Modeling and Simulation?'>
+         1
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=2 title='How the PK-PD model was created in R?'>
+         2
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=3 title='How Does The App Help Understand How Dose and Dosing Frequncy affect treatment efficacy of Antibiotics:'>
+         3
+      </a>
+    </li>
+    <li>
+      <a href="#" target="_self" rel='tooltip' 
+        data-slide=4 title='How Does The App Help Understand How Drug parameters Affect treatment efficacy:'>
+         4
+      </a>
+    </li>
+  </ul>
+  </div>  <!--[if IE]>
+    <script 
+      src="http://ajax.googleapis.com/ajax/libs/chrome-frame/1/CFInstall.min.js">  
+    </script>
+    <script>CFInstall.check({mode: 'overlay'});</script>
+  <![endif]-->
+</body>
+  <!-- Load Javascripts for Widgets -->
+  
+  <!-- MathJax: Fall back to local if CDN offline but local image fonts are not supported (saves >100MB) -->
+  <script type="text/x-mathjax-config">
+    MathJax.Hub.Config({
+      tex2jax: {
+        inlineMath: [['$','$'], ['\\(','\\)']],
+        processEscapes: true
+      }
+    });
+  </script>
+  <script type="text/javascript" src="http://cdn.mathjax.org/mathjax/2.0-latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  <!-- <script src="https://c328740.ssl.cf1.rackcdn.com/mathjax/2.0-latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+  </script> -->
+  <script>window.MathJax || document.write('<script type="text/x-mathjax-config">MathJax.Hub.Config({"HTML-CSS":{imageFont:null}});<\/script><script src="libraries/widgets/mathjax/MathJax.js?config=TeX-AMS-MML_HTMLorMML"><\/script>')
+</script>
+<!-- LOAD HIGHLIGHTER JS FILES -->
+  <script src="libraries/highlighters/highlight.js/highlight.pack.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
+  <!-- DONE LOADING HIGHLIGHTER JS FILES -->
+   
+  </html>
