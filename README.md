@@ -1,3 +1,4 @@
 # Developing-Data-Product-Project
 
-Course project pitch for Shiny App for oursera "Developing Data Products" 
+"Developing Data Products" Course project slidify pitch for Shiny App
+<center>https://hechuan.shinyapps.io/PK-PD-Modeling-of-Antibiotics/</center>
